@@ -5,6 +5,10 @@ VENV := .venv
 BIN := $(VENV)/bin
 UV := $(shell command -v uv 2>/dev/null)
 
+# News about the MkDocs ecosystem, not findings about this site. requirements.txt pins the 1.x line.
+export NO_MKDOCS_2_WARNING := true
+export DISABLE_MKDOCS_2_WARNING := true
+
 .DEFAULT_GOAL := help
 .PHONY: help install serve build check versions clean
 
@@ -13,7 +17,7 @@ help: ## Show this help
 
 $(BIN)/mkdocs: requirements.txt
 ifdef UV
-	uv venv $(VENV)
+	uv venv --allow-existing $(VENV)
 	VIRTUAL_ENV=$(VENV) uv pip install -r requirements.txt
 else
 	python3 -m venv $(VENV)

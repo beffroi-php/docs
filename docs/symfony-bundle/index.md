@@ -11,7 +11,7 @@ two packages underneath usable without a framework.
 
 ## What it brings
 
-| | |
+| Page | What it covers |
 |---|---|
 | [Configuration](configuration.md) | One tree under `beffroi`, section by section, validated when the container is built |
 | [Routes and planes](routes-and-planes.md) | The controllers of both planes, and `BEFFROI_PLANE` to restrict a process to one |

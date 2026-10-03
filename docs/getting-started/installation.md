@@ -7,7 +7,7 @@ description: What Beffroi needs to run, and how to require it in an application 
 
 ## What it needs
 
-| | |
+| What | Why |
 |---|---|
 | PHP | 8.4 or later |
 | Database | PostgreSQL, through Doctrine ORM |

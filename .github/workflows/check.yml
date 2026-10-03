@@ -4,6 +4,13 @@ on:
     pull_request:
     workflow_dispatch:
 
+# MkDocs 2.0 is announced as backward incompatible with every plugin and theme, so the toolchain is pinned
+# to the 1.x line in requirements.txt and the two notices about it are silenced: they are news about the
+# ecosystem, not findings about this site.
+env:
+    NO_MKDOCS_2_WARNING: 'true'
+    DISABLE_MKDOCS_2_WARNING: 'true'
+
 permissions:
     contents: read
 

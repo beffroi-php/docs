@@ -21,7 +21,7 @@ guide. A team that wants to make them differently still can: the bundle is the s
 
 ## In this section
 
-| | |
+| Page | What it covers |
 |---|---|
 | [Deployment](deployment.md) | The image, FrankenPHP in worker mode, and the two planes |
 | [Configuration](configuration.md) | The environment the application reads, and what each variable decides |

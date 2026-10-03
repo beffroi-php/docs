@@ -60,7 +60,7 @@ fails the build when a layer reaches where it should not.
 
 ## Requirements
 
-| | |
+| What | Which |
 |---|---|
 | PHP | 8.4 or later |
 | Symfony | 8.2, for the bundle and the application |

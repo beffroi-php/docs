@@ -235,9 +235,33 @@ body {
   padding-left: 0.5rem;
 }
 
-/* The pencil a stub carries, from the "status" metadata. */
+/* The pencil a stub carries, from the "status" metadata; the theme has no icon for a status of our own
+   and falls back to an information circle, which says the opposite of what a stub is. */
+:root {
+  --md-status--draft: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>');
+}
+
+.md-status--draft::after {
+  -webkit-mask-image: var(--md-status--draft);
+  mask-image: var(--md-status--draft);
+}
+
 .md-status::after {
-  opacity: 0.55;
+  opacity: 0.5;
+}
+
+/* A section that is a page and a parent at once holds three elements that are all .md-nav__link: the
+   container, the link and the label carrying the chevron. Only the link is painted. */
+.md-nav__container,
+.md-nav__container > label.md-nav__link,
+.md-nav__container > label.md-nav__link:hover {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.md-nav__container > a.md-nav__link {
+  flex: 1;
 }
 
 /* ---------------------------------------------------------------- Content */
@@ -332,6 +356,19 @@ body {
 .md-typeset pre > code {
   border: 0;
   padding: 0.77rem 1rem;
+}
+
+/* A code span that is a link reads as a link, in the accent colour; the theme would paint it with the
+   colours of the header, which here are white on white. */
+.md-typeset a code {
+  background-color: var(--bf-accent-soft);
+  border-color: transparent;
+  color: var(--bf-accent);
+}
+
+.md-typeset a:hover code {
+  background-color: var(--bf-accent-soft);
+  color: var(--bf-accent-strong);
 }
 
 .md-typeset .highlight,
