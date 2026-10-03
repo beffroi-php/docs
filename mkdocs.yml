@@ -1,0 +1,239 @@
+site_name: Beffroi
+site_description: An identity provider for the Symfony ecosystem. OAuth 2.0 and OpenID Connect first, on a pure-PHP core.
+site_url: https://beffroi-php.github.io/docs/
+site_author: The Beffroi contributors
+copyright: Released under the MIT licence
+repo_url: https://github.com/beffroi-php/beffroi
+repo_name: beffroi-php/beffroi
+edit_uri: https://github.com/beffroi-php/docs/edit/0.1/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  language: en
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    logo: material/bell-outline
+    repo: fontawesome/brands/github
+    edit: material/pencil-outline
+    annotation: material/plus-circle
+  favicon: assets/images/favicon.svg
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Follow the system theme
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to the dark theme
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: Switch to the light theme
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.tooltips
+    - content.action.edit
+
+extra_css:
+  - assets/stylesheets/beffroi.css
+
+plugins:
+  - search
+  - git-revision-date-localized:
+      enable_creation_date: false
+      type: date
+      fallback_to_build_date: true
+  - redirects:
+      redirect_maps: {}
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      permalink_title: Link to this section
+      toc_depth: 3
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.tilde
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
+  nav:
+    omitted_files: warn
+
+extra:
+  status:
+    draft: This page is a stub, the section it belongs to is not written yet
+    new: Added in this version
+  version:
+    provider: mike
+    alias: true
+    default: latest
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/beffroi-php
+      name: Beffroi on GitHub
+    - icon: fontawesome/brands/php
+      link: https://packagist.org/packages/beffroi/
+      name: The packages on Packagist
+
+nav:
+  - Beffroi: index.md
+  - The project:
+      - the-project/what-is-beffroi.md
+      - the-project/packages.md
+      - the-project/secure-by-default.md
+      - the-project/conformance.md
+      - the-project/versions.md
+      - the-project/contributing.md
+  - Getting started:
+      - getting-started/installation.md
+      - getting-started/the-standalone-application.md
+      - getting-started/tenant-and-keys.md
+      - getting-started/your-first-client.md
+      - getting-started/a-symfony-relying-party.md
+  - Identity core:
+      - core/index.md
+      - core/tenants.md
+      - core/users.md
+      - Credentials:
+          - core/credentials/index.md
+          - core/credentials/passwords.md
+          - core/credentials/passkeys.md
+          - core/credentials/totp.md
+          - core/credentials/backup-codes.md
+      - core/authentication-sessions.md
+      - core/groups.md
+      - core/linked-identities.md
+      - core/keys.md
+      - core/personal-data.md
+      - core/ports.md
+      - core/events.md
+  - OAuth 2.0 and OpenID Connect:
+      - oidc/index.md
+      - oidc/clients.md
+      - oidc/client-authentication.md
+      - oidc/authorization-request.md
+      - oidc/interactions.md
+      - oidc/consent.md
+      - Grants:
+          - oidc/grants/index.md
+          - oidc/grants/authorization-code.md
+          - oidc/grants/refresh-token.md
+          - oidc/grants/client-credentials.md
+          - oidc/grants/device-code.md
+          - oidc/grants/backchannel-authentication.md
+          - oidc/grants/token-exchange.md
+          - oidc/grants/jwt-bearer.md
+      - Tokens:
+          - oidc/tokens/index.md
+          - oidc/tokens/access-tokens.md
+          - oidc/tokens/id-tokens.md
+          - oidc/tokens/refresh-tokens.md
+          - oidc/tokens/encryption.md
+      - oidc/scopes-and-claims.md
+      - oidc/resources.md
+      - oidc/authorization-details.md
+      - oidc/pushed-authorization-requests.md
+      - oidc/request-objects.md
+      - oidc/response-modes.md
+      - Sender-constrained tokens:
+          - oidc/sender-constrained/index.md
+          - oidc/sender-constrained/dpop.md
+          - oidc/sender-constrained/mutual-tls.md
+      - oidc/userinfo.md
+      - oidc/introspection-and-revocation.md
+      - oidc/discovery-and-jwks.md
+      - oidc/logout.md
+      - oidc/dynamic-registration.md
+      - oidc/pairwise-subjects.md
+      - oidc/errors.md
+      - oidc/ports.md
+  - The Symfony bundle:
+      - symfony-bundle/index.md
+      - symfony-bundle/installation.md
+      - symfony-bundle/configuration.md
+      - symfony-bundle/routes-and-planes.md
+      - symfony-bundle/persistence.md
+      - symfony-bundle/security.md
+      - symfony-bundle/key-management.md
+      - symfony-bundle/pages.md
+      - symfony-bundle/translations.md
+      - symfony-bundle/messenger.md
+      - symfony-bundle/account.md
+      - symfony-bundle/web-push.md
+      - symfony-bundle/console-commands.md
+      - symfony-bundle/profiler.md
+  - The standalone application:
+      - application/index.md
+      - application/deployment.md
+      - application/configuration.md
+      - application/operating.md
+      - application/observability.md
+  - SCIM:
+      - scim/index.md
+  - SAML 2.0:
+      - saml/index.md
+  - Reference:
+      - reference/endpoints.md
+      - reference/configuration.md
+      - reference/console-commands.md
+      - reference/events.md
+      - reference/specifications.md
+  - Migration:
+      - migration/index.md
