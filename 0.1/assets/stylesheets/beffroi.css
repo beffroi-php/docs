@@ -1,0 +1,602 @@
+/*
+ * The GitBook look, on top of Material for MkDocs.
+ *
+ * Everything the eye reads first is a token of the block below: change the accent, the borders and
+ * the radius here and the whole site follows. Below the tokens, one section per part of the page, in
+ * the order the reader meets them: header, sidebar, content, code, hints, tables, footer.
+ */
+
+:root {
+  --bf-accent: #3465d8;
+  --bf-accent-strong: #2a51ad;
+  --bf-accent-soft: rgba(52, 101, 216, 0.08);
+
+  --bf-fg: #1c1e21;
+  --bf-fg-muted: #656d76;
+  --bf-fg-faint: #8c959f;
+  --bf-bg: #ffffff;
+  --bf-bg-soft: #f7f8fa;
+  --bf-border: #e4e7eb;
+  --bf-border-strong: #d4d8de;
+
+  --bf-radius: 8px;
+  --bf-radius-sm: 6px;
+  --bf-sidebar-width: 15.5rem;
+  --bf-content-width: 46rem;
+}
+
+[data-md-color-scheme="slate"] {
+  --bf-accent: #8ab4ff;
+  --bf-accent-strong: #a9c7ff;
+  --bf-accent-soft: rgba(138, 180, 255, 0.12);
+
+  --bf-fg: #e6e8eb;
+  --bf-fg-muted: #9ba3af;
+  --bf-fg-faint: #7d8591;
+  --bf-bg: #111317;
+  --bf-bg-soft: #181b20;
+  --bf-border: #272b32;
+  --bf-border-strong: #343a43;
+}
+
+/* The Material palette, expressed in those tokens. A white header with dark text is what
+   --md-primary-fg-color and --md-primary-bg-color mean, in that order. */
+[data-md-color-scheme="default"] {
+  --md-default-fg-color: var(--bf-fg);
+  --md-default-fg-color--light: var(--bf-fg-muted);
+  --md-default-fg-color--lighter: var(--bf-fg-faint);
+  --md-default-bg-color: var(--bf-bg);
+  --md-primary-fg-color: var(--bf-bg);
+  --md-primary-bg-color: var(--bf-fg);
+  --md-primary-bg-color--light: var(--bf-fg-muted);
+  --md-code-bg-color: var(--bf-bg-soft);
+  --md-footer-bg-color: var(--bf-bg);
+  --md-footer-fg-color: var(--bf-fg);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-fg-color: var(--bf-fg);
+  --md-default-fg-color--light: var(--bf-fg-muted);
+  --md-default-fg-color--lighter: var(--bf-fg-faint);
+  --md-default-bg-color: var(--bf-bg);
+  --md-primary-fg-color: var(--bf-bg);
+  --md-primary-bg-color: var(--bf-fg);
+  --md-primary-bg-color--light: var(--bf-fg-muted);
+  --md-code-bg-color: var(--bf-bg-soft);
+  --md-footer-bg-color: var(--bf-bg);
+  --md-footer-fg-color: var(--bf-fg);
+}
+
+:root,
+[data-md-color-scheme="slate"] {
+  --md-accent-fg-color: var(--bf-accent-strong);
+  --md-typeset-a-color: var(--bf-accent);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* ---------------------------------------------------------------- Header */
+
+.md-header {
+  background-color: var(--bf-bg);
+  color: var(--bf-fg);
+  border-bottom: 1px solid var(--bf-border);
+  box-shadow: none;
+}
+
+.md-header--shadow {
+  box-shadow: none;
+}
+
+.md-header__title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-left: 0.5rem;
+}
+
+.md-header__button.md-logo :is(img, svg) {
+  height: 1.3rem;
+  width: 1.3rem;
+}
+
+.md-search__form {
+  background-color: var(--bf-bg-soft);
+  border: 1px solid var(--bf-border);
+  border-radius: var(--bf-radius);
+  box-shadow: none;
+  height: 2rem;
+}
+
+.md-search__form:hover {
+  background-color: var(--bf-bg-soft);
+  border-color: var(--bf-border-strong);
+}
+
+[data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+  border-radius: var(--bf-radius) var(--bf-radius) 0 0;
+}
+
+.md-search__input::placeholder {
+  color: var(--bf-fg-faint);
+}
+
+.md-search__output {
+  border-radius: 0 0 var(--bf-radius) var(--bf-radius);
+}
+
+.md-search-result__meta {
+  color: var(--bf-fg-muted);
+  font-size: 0.65rem;
+}
+
+/* The version selector, a bordered pill rather than a bare dropdown. */
+.md-version__current {
+  border: 1px solid var(--bf-border);
+  border-radius: 999px;
+  padding: 0.05rem 0.55rem;
+  font-size: 0.68rem;
+  color: var(--bf-fg-muted);
+  margin: 0 0 0 0.6rem;
+}
+
+.md-version__list {
+  border-radius: var(--bf-radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+/* ---------------------------------------------------------------- Sidebars */
+
+.md-nav {
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.md-sidebar--primary {
+  border-right: 1px solid var(--bf-border);
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-sidebar--primary {
+    width: var(--bf-sidebar-width);
+  }
+  .md-sidebar--secondary {
+    width: 12rem;
+  }
+}
+
+/* A section title: small, spaced, quiet, the way a GitBook group reads. */
+.md-nav--primary .md-nav__item--section > .md-nav__link {
+  color: var(--bf-fg-faint);
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 1.1rem;
+  margin-bottom: 0.2rem;
+  cursor: default;
+}
+
+.md-nav__item .md-nav__link {
+  color: var(--bf-fg-muted);
+  border-radius: var(--bf-radius-sm);
+  padding: 0.28rem 0.5rem;
+  margin: 0.05rem 0;
+  transition: background-color 120ms, color 120ms;
+}
+
+.md-nav__item .md-nav__link:hover {
+  background-color: var(--bf-bg-soft);
+  color: var(--bf-fg);
+}
+
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active:hover {
+  background-color: var(--bf-accent-soft);
+  color: var(--bf-accent);
+  font-weight: 500;
+}
+
+.md-nav--primary .md-nav__title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: none;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-nav--primary > .md-nav__title {
+    display: none;
+  }
+  .md-nav--primary > .md-nav__list {
+    padding-top: 0.6rem;
+  }
+}
+
+/* "On this page", on the right, as a quiet column under a small label. */
+.md-nav--secondary .md-nav__title {
+  color: var(--bf-fg-faint);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: none;
+  background: transparent;
+}
+
+.md-nav--secondary .md-nav__list {
+  border-left: 1px solid var(--bf-border);
+  padding-left: 0.2rem;
+  margin-left: 0.6rem;
+}
+
+.md-nav--secondary .md-nav__link {
+  padding-left: 0.5rem;
+}
+
+/* The pencil a stub carries, from the "status" metadata; the theme has no icon for a status of our own
+   and falls back to an information circle, which says the opposite of what a stub is. */
+:root {
+  --md-status--draft: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>');
+}
+
+.md-status--draft::after {
+  -webkit-mask-image: var(--md-status--draft);
+  mask-image: var(--md-status--draft);
+}
+
+.md-status::after {
+  opacity: 0.5;
+}
+
+/* A section that is a page and a parent at once holds three elements that are all .md-nav__link: the
+   container, the link and the label carrying the chevron. Only the link is painted. */
+.md-nav__container,
+.md-nav__container > label.md-nav__link,
+.md-nav__container > label.md-nav__link:hover {
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+}
+
+.md-nav__container > a.md-nav__link {
+  flex: 1;
+}
+
+/* ---------------------------------------------------------------- Content */
+
+.md-content {
+  padding-bottom: 2rem;
+}
+
+.md-content__inner {
+  margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 60em) {
+  .md-content__inner {
+    max-width: var(--bf-content-width);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.md-typeset {
+  font-size: 0.8rem;
+  line-height: 1.72;
+  color: var(--bf-fg);
+}
+
+.md-typeset h1 {
+  color: var(--bf-fg);
+  font-size: 1.85rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.9rem;
+}
+
+.md-typeset h2 {
+  font-size: 1.3rem;
+  font-weight: 620;
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  margin-top: 2.2rem;
+}
+
+.md-typeset h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+  margin-top: 1.6rem;
+}
+
+.md-typeset h4 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  margin-top: 1.2rem;
+}
+
+.md-typeset a {
+  text-decoration-color: var(--bf-accent-soft);
+  text-underline-offset: 0.18em;
+}
+
+.md-typeset a:hover {
+  text-decoration-color: currentcolor;
+}
+
+.md-typeset hr {
+  border-bottom-color: var(--bf-border);
+}
+
+.md-typeset blockquote {
+  border-left: 3px solid var(--bf-border-strong);
+  color: var(--bf-fg-muted);
+}
+
+/* A page's "last updated", under the title, as discreet as GitBook's. */
+.md-source-file,
+.md-typeset .md-source-file__fact {
+  color: var(--bf-fg-faint);
+  font-size: 0.64rem;
+}
+
+/* ---------------------------------------------------------------- Code */
+
+.md-typeset code {
+  background-color: var(--bf-bg-soft);
+  border: 1px solid var(--bf-border);
+  border-radius: 4px;
+  padding: 0.05em 0.33em;
+  font-size: 0.84em;
+}
+
+.md-typeset pre > code {
+  border: 0;
+  padding: 0.77rem 1rem;
+}
+
+/* A code span that is a link reads as a link, in the accent colour; the theme would paint it with the
+   colours of the header, which here are white on white. */
+.md-typeset a code {
+  background-color: var(--bf-accent-soft);
+  border-color: transparent;
+  color: var(--bf-accent);
+}
+
+.md-typeset a:hover code {
+  background-color: var(--bf-accent-soft);
+  color: var(--bf-accent-strong);
+}
+
+.md-typeset .highlight,
+.md-typeset .highlighttable {
+  border: 1px solid var(--bf-border);
+  border-radius: var(--bf-radius);
+  overflow: hidden;
+}
+
+.md-typeset pre {
+  margin: 0;
+}
+
+.md-typeset .highlight > pre > code,
+.md-typeset .highlighttable code {
+  font-size: 0.72rem;
+  line-height: 1.65;
+}
+
+/* The filename of a block, the tab GitBook draws above the code. */
+.md-typeset .highlight span.filename {
+  background-color: var(--bf-bg-soft);
+  border-bottom: 1px solid var(--bf-border);
+  color: var(--bf-fg-muted);
+  font-family: var(--md-code-font-family);
+  font-size: 0.68rem;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+}
+
+.md-clipboard {
+  color: var(--bf-fg-faint);
+}
+
+.md-clipboard:hover {
+  color: var(--bf-accent);
+}
+
+/* Tabbed blocks, flat, underlined on the selected one. */
+.md-typeset .tabbed-set > input:checked + label {
+  color: var(--bf-accent);
+  border-color: var(--bf-accent);
+}
+
+.md-typeset .tabbed-labels > label {
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.md-typeset .tabbed-block > .highlight:first-child > pre > code {
+  border-radius: 0 0 var(--bf-radius) var(--bf-radius);
+}
+
+/* ---------------------------------------------------------------- Hints */
+
+.md-typeset .admonition,
+.md-typeset details {
+  border: 1px solid var(--bf-border);
+  border-left-width: 3px;
+  border-radius: var(--bf-radius);
+  box-shadow: none;
+  font-size: 0.76rem;
+  padding: 0.1rem 0.75rem;
+}
+
+.md-typeset .admonition-title,
+.md-typeset summary {
+  background-color: transparent !important;
+  font-weight: 600;
+  margin: 0.55rem 0 0.1rem;
+  padding: 0 0 0 1.5rem;
+  border: 0;
+  border-radius: 0;
+}
+
+.md-typeset .admonition-title::before,
+.md-typeset summary::before {
+  left: 0;
+  top: 0.18rem;
+}
+
+.md-typeset .admonition > :last-child,
+.md-typeset details > :last-child {
+  margin-bottom: 0.6rem;
+}
+
+.md-typeset :is(.note, .abstract, .info, .tip) {
+  background-color: var(--bf-accent-soft);
+  border-left-color: var(--bf-accent);
+}
+
+.md-typeset :is(.warning, .caution) {
+  background-color: rgba(255, 145, 0, 0.08);
+}
+
+.md-typeset :is(.danger, .failure, .bug) {
+  background-color: rgba(255, 82, 82, 0.08);
+}
+
+.md-typeset :is(.success, .check) {
+  background-color: rgba(0, 200, 83, 0.08);
+}
+
+/* ---------------------------------------------------------------- Tables */
+
+.md-typeset table:not([class]) {
+  border: 1px solid var(--bf-border);
+  border-radius: var(--bf-radius);
+  box-shadow: none;
+  font-size: 0.72rem;
+  display: table;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--bf-bg-soft);
+  color: var(--bf-fg);
+  font-weight: 600;
+  min-width: auto;
+}
+
+.md-typeset table:not([class]) :is(th, td) {
+  border-bottom: 1px solid var(--bf-border);
+  padding: 0.55rem 0.8rem;
+}
+
+.md-typeset table:not([class]) tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ---------------------------------------------------------------- Buttons and footer */
+
+.md-typeset .md-button {
+  border-radius: var(--bf-radius-sm);
+  border-width: 1px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+}
+
+.md-typeset .md-button--primary {
+  background-color: var(--bf-accent);
+  border-color: var(--bf-accent);
+  color: #ffffff;
+}
+
+.md-footer {
+  border-top: 1px solid var(--bf-border);
+}
+
+.md-footer__inner {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1rem auto;
+  padding: 0;
+  max-width: var(--bf-content-width);
+}
+
+.md-footer__link {
+  border: 1px solid var(--bf-border);
+  border-radius: var(--bf-radius);
+  padding: 0.6rem 0.8rem;
+  margin: 0;
+  opacity: 1;
+  flex: 1;
+  transition: border-color 120ms;
+}
+
+.md-footer__link:hover {
+  border-color: var(--bf-accent);
+}
+
+.md-footer__direction {
+  color: var(--bf-fg-faint);
+  font-size: 0.62rem;
+}
+
+.md-footer__title {
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.md-footer-meta {
+  background-color: var(--bf-bg-soft);
+  border-top: 1px solid var(--bf-border);
+}
+
+.md-footer-meta .md-footer-meta__inner {
+  max-width: none;
+}
+
+.md-copyright,
+.md-copyright__highlight {
+  color: var(--bf-fg-faint);
+  font-size: 0.62rem;
+}
+
+/* ---------------------------------------------------------------- The landing page */
+
+.bf-hero {
+  padding: 1rem 0 0.5rem;
+}
+
+.bf-hero p.bf-hero__tagline {
+  color: var(--bf-fg-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: -0.4rem;
+}
+
+.md-typeset .grid.cards > :is(ul, ol) > li,
+.md-typeset .grid > .card {
+  border: 1px solid var(--bf-border);
+  border-radius: var(--bf-radius);
+  box-shadow: none;
+  padding: 0.9rem;
+  transition: border-color 120ms;
+}
+
+.md-typeset .grid.cards > :is(ul, ol) > li:hover {
+  border-color: var(--bf-accent);
+  box-shadow: none;
+}
+
+.md-typeset .grid.cards > :is(ul, ol) > li > :is(p, hr):first-child {
+  margin-top: 0;
+}
+
+.md-typeset .grid.cards > :is(ul, ol) > li > p > strong {
+  font-size: 0.84rem;
+}
