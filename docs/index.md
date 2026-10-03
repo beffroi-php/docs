@@ -5,13 +5,20 @@ hide:
   - navigation
 ---
 
+<div class="bf-hero" markdown>
+
+<p class="bf-hero__eyebrow">OAuth 2.0 · OpenID Connect · PHP 8.4</p>
+
 # Beffroi
 
-<p class="bf-hero__tagline" markdown>
-An OpenID Provider for the Symfony ecosystem. On the map of a Symfony application the interface is
-Symfony, the API is API Platform, and the identity provider is always somewhere else. Beffroi paints
-that last box the same colour as the other two.
-</p>
+<p class="bf-hero__tagline">An OpenID Provider for the Symfony ecosystem. On the map of a Symfony
+application the interface is Symfony, the API is API Platform, and the identity provider is always
+somewhere else. Beffroi paints that last box the same colour as the other two.</p>
+
+[Get started](getting-started/installation.md){ .md-button .md-button--primary }
+[What is Beffroi?](the-project/what-is-beffroi.md){ .md-button }
+
+</div>
 
 !!! info "This documentation describes a version that is not released yet"
 
@@ -21,7 +28,7 @@ that last box the same colour as the other two.
 
 <div class="grid cards" markdown>
 
--   **Start here**
+-   :material-compass-outline:{ .lg .middle } **Start here**
 
     ---
 
@@ -29,7 +36,7 @@ that last box the same colour as the other two.
 
     [:octicons-arrow-right-24: What is Beffroi?](the-project/what-is-beffroi.md)
 
--   **Run a provider**
+-   :material-server-outline:{ .lg .middle } **Run a provider**
 
     ---
 
@@ -37,7 +44,7 @@ that last box the same colour as the other two.
 
     [:octicons-arrow-right-24: Getting started](getting-started/installation.md)
 
--   **Add it to an application**
+-   :material-language-php:{ .lg .middle } **Add it to an application**
 
     ---
 
@@ -45,7 +52,7 @@ that last box the same colour as the other two.
 
     [:octicons-arrow-right-24: The Symfony bundle](symfony-bundle/index.md)
 
--   **Read the protocol**
+-   :material-key-chain-variant:{ .lg .middle } **Read the protocol**
 
     ---
 
@@ -64,8 +71,17 @@ that last box the same colour as the other two.
 | [`beffroi/symfony-bundle`](symfony-bundle/index.md) | The Symfony integration: configuration, controllers, security, persistence, login and consent pages | both, plus Symfony |
 | [`beffroi/op`](application/index.md) | The standalone application, on FrankenPHP. The recommended deployment | the bundle |
 
+## What it will not do
+
+Secure by default means there is no option to do it wrong: no implicit flow, no password grant, PKCE with
+`S256` only, redirect URIs compared exactly, `iss` in every authorization response. Those are properties of
+the code, not settings of a file.
+
+[:octicons-arrow-right-24: Secure by default](the-project/secure-by-default.md)
+
 ## Where the rest lives
 
-The code is one monorepo, [`beffroi-php/beffroi`](https://github.com/beffroi-php/beffroi), split read-only into one
-repository per package. This site is written in [`beffroi-php/docs`](https://github.com/beffroi-php/docs), one branch
-per version of the packages it describes.
+The code is one monorepo, [`beffroi-php/beffroi`](https://github.com/beffroi-php/beffroi), split read-only
+into one repository per package. This site is written in
+[`beffroi-php/docs`](https://github.com/beffroi-php/docs), one branch per version of the packages it
+describes.
